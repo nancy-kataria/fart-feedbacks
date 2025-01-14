@@ -1,6 +1,7 @@
 // import Image from "next/image";
 // import styles from "./page.module.css";
 
+import Feedbacks from "../../Components/Feedbacks";
 import Form from "../../Components/Form";
 
 export default function Home() {
@@ -18,6 +19,8 @@ export default function Home() {
       <hr />
 
       <Form />
+
+      <Feedbacks />
 
       <hr />
 
