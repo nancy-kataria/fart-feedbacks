@@ -30,10 +30,16 @@ body {
   margin: 0;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.intro-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
+hr{
+  width: 50vw;
+}
+
 
 @media (prefers-color-scheme: dark) {
   html {
