@@ -1,6 +1,8 @@
 // import Image from "next/image";
 // import styles from "./page.module.css";
 
+import Form from "../../Components/Form";
+
 export default function Home() {
   return (
     <div className="intro-container">
@@ -15,29 +17,7 @@ export default function Home() {
 
       <hr />
 
-      <form className="fart-section">
-        <div className="input-container">
-          <span className="fart-sparkle">
-            <label htmlFor="name">Name</label>
-          </span>
-
-          <input type="text" id="name" name="name" required />
-        </div>
-        <div className="input-container">
-          <span className="fart-sparkle">
-            <label htmlFor="feedback">Feedback</label>
-          </span>
-          <textarea rows={5} id="feedback" name="feedback" required />
-        </div>
-
-        {/* <div>
-          <label>Give a sparkle if you liked Fartlabs </label>
-        </div> */}
-        {/* <p>You do not need to submit your real name.</p> */}
-        <div className="submit-container">
-        <button className="fart-button">Submit your farts</button>
-        </div>
-      </form>
+      <Form />
 
       <hr />
 
