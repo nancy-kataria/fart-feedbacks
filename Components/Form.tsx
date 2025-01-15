@@ -1,6 +1,6 @@
 "use client";
 
-import React, { startTransition, useActionState, useState } from "react";
+import React, { useActionState, useState } from "react";
 // import { useFormStatus } from "react-dom";
 
 interface FormData {
@@ -62,15 +62,8 @@ function Form() {
     });
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    startTransition(() => {
-      submitAction(formData); // Trigger the async action inside the transition
-    });
-  };
-
   return (
-    <form className="fart-section" onSubmit={handleSubmit}>
+    <form className="fart-section" action={()=>submitAction(formData)}>
       <div className="input-container">
         <span className="fart-sparkle">
           <label htmlFor="name">Name</label>
