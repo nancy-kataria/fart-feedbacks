@@ -15,7 +15,7 @@ function Form() {
     feedback: "",
   });
 
-  const {pending} = useFormStatus();
+  const { pending } = useFormStatus();
 
   // Handle form input change
   const handleInputChange = (
@@ -26,14 +26,22 @@ function Form() {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value, // Update the corresponding input field
+      [name]: value,
     });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Process the form data here (e.g., send it to an API)
+    try {
+      await fetch("/api/SubmitFeedback", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      console.log("Form submitted:", formData);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -66,12 +74,10 @@ function Form() {
         />
       </div>
 
-      {/* <div>
-          <label>Give a sparkle if you liked Fartlabs </label>
-        </div> */}
-      {/* <p>You do not need to submit your real name.</p> */}
       <div className="submit-container">
-        <button className="fart-button" type="submit" disabled={pending}>Submit your farts</button>
+        <button className="fart-button" type="submit" disabled={pending}>
+          Submit your farts
+        </button>
       </div>
     </form>
   );
