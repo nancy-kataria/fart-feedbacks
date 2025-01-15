@@ -1,6 +1,6 @@
-"use client";
+// "use client";
 
-import { useEffect, useState } from "react";
+import React, { use } from "react";
 
 interface feedbackResponse {
   _id: string;
@@ -9,24 +9,29 @@ interface feedbackResponse {
   createdAt: string;
 }
 
-function Feedbacks() {
-  const [feedbackList, setFeedbackList] = useState<feedbackResponse[]>([]);
-
-  const getFeedBacks = async () => {
-    try {
-      const res = await fetch("/api/getFeedbacks");
-      const data = await res.json();
-      setFeedbackList(data);
-    } catch (error) {
-      console.log(error);
+const getFeedBacks = async () => {
+  try {
+    const res = await fetch("http://localhost:3000/api/getFeedbacks");
+    if (!res.ok) {
+      throw new Error("Failed to fetch data");
     }
-  };
+    return res.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-  useEffect(() => {
-    getFeedBacks();
-  }, []);
+const Feedbacks = () => {
+  // const [feedbackList, setFeedbackList] = useState<feedbackResponse[]>([]);
+
+  // useEffect(() => {
+  //   getFeedBacks();
+  // }, []);
+
+  const feedbackList = use(getFeedBacks());
 
   console.log(feedbackList)
+
 
   return (
     <div className="fart-section">
@@ -38,6 +43,6 @@ function Feedbacks() {
       ))}
     </div>
   );
-}
+};
 
 export default Feedbacks;
