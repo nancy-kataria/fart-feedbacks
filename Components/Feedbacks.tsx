@@ -1,5 +1,3 @@
-// "use client";
-
 import React, { use } from "react";
 
 interface feedbackResponse {
@@ -9,7 +7,7 @@ interface feedbackResponse {
   createdAt: string;
 }
 
-const getFeedBacks = async () => {
+const fetchFeedBacks = async () => {
   try {
     const res = await fetch("http://localhost:3000/api/getFeedbacks");
     if (!res.ok) {
@@ -28,10 +26,7 @@ const Feedbacks = () => {
   //   getFeedBacks();
   // }, []);
 
-  const feedbackList = use(getFeedBacks());
-
-  console.log(feedbackList)
-
+  const feedbackList = use(fetchFeedBacks());
 
   return (
     <div className="fart-section">
