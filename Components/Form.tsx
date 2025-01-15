@@ -1,11 +1,30 @@
 "use client";
 
-import React, { useState } from "react";
-import { useFormStatus } from "react-dom";
+import React, { startTransition, useActionState, useState } from "react";
+// import { useFormStatus } from "react-dom";
 
 interface FormData {
   name: string;
   feedback: string;
+}
+
+async function submitFeedback(formData: FormData): Promise<string | null> {
+  try {
+    const res = await fetch("/api/SubmitFeedback", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
+    if (!res.ok) {
+      throw new Error("Failed to submit feedback");
+    }
+
+    return null; // return null on success
+    // window.location.reload()
+  } catch (error) {
+    console.log(error)
+    return "Error: Failed to submit feedback";
+  }
 }
 
 function Form() {
@@ -15,7 +34,20 @@ function Form() {
     feedback: "",
   });
 
-  const { pending } = useFormStatus();
+  const [error, submitAction, isPending] = useActionState(
+    async (previousState, newFormData: FormData) => {
+      const error = await submitFeedback(newFormData);
+      if (error) {
+        // Return the error if there's a failure
+        return error;
+      }
+      // Return null on success
+      return null;
+    },
+    null // Initial state is null (no error)
+  );
+
+  // const { pending } = useFormStatus();
 
   // Handle form input change
   const handleInputChange = (
@@ -32,16 +64,9 @@ function Form() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    try {
-      await fetch("/api/SubmitFeedback", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-      console.log("Form submitted:", formData);
-    } catch (error) {
-      console.log(error);
-    }
+    startTransition(() => {
+      submitAction(formData); // Trigger the async action inside the transition
+    });
   };
 
   return (
@@ -75,10 +100,12 @@ function Form() {
       </div>
 
       <div className="submit-container">
-        <button className="fart-button" type="submit" disabled={pending}>
+        <button className="fart-button" type="submit" disabled={isPending}>
           Submit your farts
         </button>
       </div>
+
+      <p>Your Respnse has been saved. Thank you !</p>
     </form>
   );
 }
