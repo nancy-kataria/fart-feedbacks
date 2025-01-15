@@ -1,10 +1,8 @@
-// import Image from "next/image";
-// import styles from "./page.module.css";
-
 import Feedbacks from "../../Components/Feedbacks";
 import Form from "../../Components/Form";
 
 export default function Home() {
+
   return (
     <div className="intro-container">
       <h2>Welcome to Fart Feedbacks</h2>
@@ -20,11 +18,15 @@ export default function Home() {
 
       <Form />
 
+      <hr />
+
       <Feedbacks />
 
       <hr />
 
-      <footer>I made this because the FartLabs Founder called me a <b>Fake Fan</b></footer>
+      <footer>
+        I made this because the FartLabs Founder called me a <b>Fake Fan</b>
+      </footer>
     </div>
   );
 }
