@@ -3,7 +3,6 @@ import connectDB from "../../../../lib/DBconnect";
 import Feedback from "../../../../Models/Feedback";
 
 export async function POST(request: NextRequest) {
-    console.log(request)
     await connectDB();
     const data = await request.json();
     
