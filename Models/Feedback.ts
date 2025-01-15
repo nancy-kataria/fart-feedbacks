@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { models } from "mongoose";
 
 const { Schema } = mongoose;
 
@@ -22,6 +22,8 @@ const feedbackSchema = new Schema(
   }
 );
 
-const Feedback = mongoose.model("Feedback", feedbackSchema);
+const Feedback = models.Feedback || mongoose.model("Feedback", feedbackSchema);
+
+module.exports = Feedback;
 
 export default Feedback;
