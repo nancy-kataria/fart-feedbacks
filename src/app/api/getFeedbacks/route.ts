@@ -1,5 +1,3 @@
-// not using anymore
-
 import connectDB from "../../../../lib/DBconnect";
 import Feedback from "../../../../Models/Feedback";
 
