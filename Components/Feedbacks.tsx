@@ -1,36 +1,20 @@
-"use client";
-import React, { useEffect, useState } from "react";
+import React, { use } from "react";
 
 interface feedbackResponse {
   _id: string;
   name: string;
   feedback: string;
   createdAt: string;
+  updatedAt: string;
+  __v: number;
 }
 
-const Feedbacks = () => {
-  const [feedbackList, setFeedbackList] = useState<feedbackResponse[]>([]);
-
-  const fetchFeedBacks = async () => {
-    try {
-      const res = await fetch(`/api/getFeedbacks`);
-      if (!res.ok) {
-        throw new Error("Failed to fetch data");
-      }
-      const data = await res.json();
-      setFeedbackList(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    fetchFeedBacks();
-  }, []);
+const Feedbacks = ({ feedbackPromise }: { feedbackPromise: Promise<feedbackResponse[] | undefined> }) => {
+  const feedbackList: feedbackResponse[] | undefined = use(feedbackPromise);
 
   return (
     <div className="fart-section">
-      {feedbackList.map((record: feedbackResponse) => (
+      {feedbackList?.map((record: feedbackResponse) => (
         <div key={record._id}>
           <h5>{record.name}</h5>
           <p>{record.feedback}</p>
