@@ -98,7 +98,7 @@ function Form() {
         </button>
       </div>
 
-      <p>Your Respnse has been saved. Thank you !</p>
+      {/* <p>Your Respnse has been saved. Thank you !</p> */}
     </form>
   );
 }
