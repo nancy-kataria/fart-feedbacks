@@ -67,6 +67,10 @@ footer {
   margin: 20px;
 }
 
+p{
+  font-size: 18px !important;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

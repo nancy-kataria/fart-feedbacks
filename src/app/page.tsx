@@ -42,7 +42,8 @@ export default function Home() {
       <hr />
 
       <footer>
-        I made this because the FartLabs Founder called me a <b>Fake Fan</b>
+        <p>I made this because the FartLabs Founder called me a <b>Fake Fan</b></p>
+        <p>© 2025, FartLabs Founder&apos;s Girlfriend</p>
       </footer>
     </div>
   );
