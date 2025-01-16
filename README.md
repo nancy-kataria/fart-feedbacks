@@ -2,12 +2,12 @@
 
 Fart Feedbacks is a one-page application built for collecting user feedback who use the tools provided by FartLabs. This project is designed to provide a simple interface for users to share their thoughts.
 
+Visit [FartLabs](https://fartlabs.org/) to learn more.
+
 ## Features
 - **Feedback Collection:** Users can easily submit their feedback with minimal effort.
 - **Modern UI:** Built using Fart.css for a clean and visually appealing design.
 - **Optimized for Performance:** Combines server and client components for an efficient and seamless user experience.
-
-Visit [FartLabs](https://fartlabs.org/) to learn more.
 
 ## What I Learned
 While building Fart Feedbacks, I gained experience in the following areas:
