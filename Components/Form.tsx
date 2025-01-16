@@ -18,11 +18,9 @@ async function handleSubmit(formData: FormData): Promise<string | null> {
     if (!res.ok) {
       throw new Error("Failed to submit feedback");
     }
-    window.location.reload();
     return null; // return null on success
-    // window.location.reload()
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return "Error: Failed to submit feedback";
   }
 }
@@ -40,6 +38,9 @@ function Form() {
       if (error) {
         // Return the error if there's a failure
         return error;
+      }
+      if (!error) {
+        window.location.reload();
       }
       // Return null on success
       return null;
@@ -63,7 +64,7 @@ function Form() {
   };
 
   return (
-    <form className="fart-section" action={()=>submitAction(formData)}>
+    <form className="fart-section" action={() => submitAction(formData)}>
       <div className="input-container">
         <span className="fart-sparkle">
           <label htmlFor="name">Name</label>
