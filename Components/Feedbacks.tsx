@@ -1,4 +1,6 @@
-import React, { use } from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 
 interface feedbackResponse {
   _id: string;
@@ -9,17 +11,25 @@ interface feedbackResponse {
   __v: number;
 }
 
-const Feedbacks = ({ feedbackPromise }: { feedbackPromise: Promise<feedbackResponse[] | undefined> }) => {
-  const feedbackList: feedbackResponse[] | undefined = use(feedbackPromise);
-
+const Feedbacks = ({
+  feedbackList,
+  loading,
+}: {
+  feedbackList: feedbackResponse[];
+  loading: boolean;
+}) => {
   return (
     <div className="fart-section">
-      {feedbackList?.map((record: feedbackResponse) => (
-        <div key={record._id}>
-          <h5>{record.name}</h5>
-          <p>{record.feedback}</p>
-        </div>
-      ))}
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        feedbackList?.map((record: feedbackResponse) => (
+          <div key={record._id}>
+            <h5>{record.name}</h5>
+            <p>{record.feedback}</p>
+          </div>
+        ))
+      )}
     </div>
   );
 };
