@@ -5,12 +5,15 @@ export async function GET() {
   try {
     await connectDB();
     const feedbackList = await Feedback.find({});
-    return new Response(JSON.stringify(feedbackList), { status: 201 });
+    return new Response(JSON.stringify(feedbackList), {
+      status: 201,
+      headers: { "Content-Type": "application/json" },
+    });
   } catch (error) {
     console.log(error);
     return new Response(
       JSON.stringify({ error: "Error while fetching feedbacks" }),
-      { status: 500 }
+      { status: 500, headers: { "Content-Type": "application/json" } }
     );
   }
 }
