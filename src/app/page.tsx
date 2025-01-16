@@ -1,7 +1,22 @@
+import { Suspense } from "react";
 import Feedbacks from "../../Components/Feedbacks";
 import Form from "../../Components/Form";
+import connectDB from "../../lib/DBconnect";
+import Feedback from "../../Models/Feedback";
+
+const fetchFeedBacks = async () => {
+  try {
+    await connectDB();
+    const feedbackList = await Feedback.find({});
+
+    return feedbackList;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export default function Home() {
+  const feedbackPromise = fetchFeedBacks();
 
   return (
     <div className="intro-container">
@@ -20,7 +35,9 @@ export default function Home() {
 
       <hr />
 
-      <Feedbacks />
+      <Suspense fallback={<p>waiting for message...</p>}>
+        <Feedbacks feedbackPromise={feedbackPromise} />
+      </Suspense>
 
       <hr />
 
