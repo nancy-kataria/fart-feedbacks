@@ -8,7 +8,7 @@ interface FormData {
   feedback: string;
 }
 
-async function submitFeedback(formData: FormData): Promise<string | null> {
+async function handleSubmit(formData: FormData): Promise<string | null> {
   try {
     const res = await fetch("/api/SubmitFeedback", {
       method: "POST",
@@ -35,8 +35,8 @@ function Form() {
   });
 
   const [error, submitAction, isPending] = useActionState(
-    async (previousState, newFormData: FormData) => {
-      const error = await submitFeedback(newFormData);
+    async (previousState: string | null, newFormData: FormData) => {
+      const error = await handleSubmit(newFormData);
       if (error) {
         // Return the error if there's a failure
         return error;
