@@ -18,7 +18,7 @@ async function handleSubmit(formData: FormData): Promise<string | null> {
     if (!res.ok) {
       throw new Error("Failed to submit feedback");
     }
-
+    window.location.reload();
     return null; // return null on success
     // window.location.reload()
   } catch (error) {
