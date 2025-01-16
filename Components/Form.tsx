@@ -25,7 +25,11 @@ async function handleSubmit(formData: FormData): Promise<string | null> {
   }
 }
 
-function Form() {
+function Form({
+  setSubmissionSuccess,
+}: {
+  setSubmissionSuccess: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
   // State to store form data
   const [formData, setFormData] = useState<FormData>({
     name: "",
@@ -40,7 +44,11 @@ function Form() {
         return error;
       }
       if (!error) {
-        window.location.reload();
+        setSubmissionSuccess(true);
+        setFormData({
+          name: "",
+          feedback: "",
+        });
       }
       // Return null on success
       return null;
