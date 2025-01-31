@@ -3,20 +3,12 @@
 import { useEffect, useState } from "react";
 import Feedbacks from "../../Components/Feedbacks";
 import Form from "../../Components/Form";
-
-interface feedbackResponse {
-  _id: string;
-  name: string;
-  feedback: string;
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
-}
+import { FeedbackResponse } from "../../types";
 
 export default function Home() {
   const [submissionSuccess, setSubmissionSuccess] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(true)
-  const [feedbackList, setFeedbackList] = useState<feedbackResponse[]>([]);
+  const [feedbackList, setFeedbackList] = useState<FeedbackResponse[]>([]);
 
   const fetchFeedBacks = async () => {
     try {

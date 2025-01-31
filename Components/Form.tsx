@@ -2,11 +2,8 @@
 
 import React, { useActionState, useState } from "react";
 // import { useFormStatus } from "react-dom";
+import { FormData } from "../types";
 
-interface FormData {
-  name: string;
-  feedback: string;
-}
 
 async function handleSubmit(formData: FormData): Promise<string | null> {
   try {

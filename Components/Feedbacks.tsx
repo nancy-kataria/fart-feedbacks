@@ -1,21 +1,13 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-
-interface feedbackResponse {
-  _id: string;
-  name: string;
-  feedback: string;
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
-}
+import React from "react";
+import { FeedbackResponse } from "../types";
 
 const Feedbacks = ({
   feedbackList,
   loading,
 }: {
-  feedbackList: feedbackResponse[];
+  feedbackList: FeedbackResponse[];
   loading: boolean;
 }) => {
   return (
@@ -23,7 +15,7 @@ const Feedbacks = ({
       {loading ? (
         <p>Loading...</p>
       ) : (
-        feedbackList?.map((record: feedbackResponse) => (
+        feedbackList?.map((record: FeedbackResponse) => (
           <div key={record._id}>
             <h5>{record.name}</h5>
             <p>{record.feedback}</p>
