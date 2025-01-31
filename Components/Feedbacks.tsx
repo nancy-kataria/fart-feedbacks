@@ -1,6 +1,6 @@
-import React, { use } from "react";
+import { use } from "react";
 
-interface feedbackResponse {
+interface FeedbackResponse {
   _id: string;
   name: string;
   feedback: string;
@@ -9,12 +9,12 @@ interface feedbackResponse {
   __v: number;
 }
 
-const Feedbacks = ({ feedbackPromise }: { feedbackPromise: Promise<feedbackResponse[] | undefined> }) => {
-  const feedbackList: feedbackResponse[] | undefined = use(feedbackPromise);
+const Feedbacks = ({ feedbackPromise }: { feedbackPromise: Promise<FeedbackResponse[]> }) => {
+  const feedbackList: FeedbackResponse[] = use(feedbackPromise);
 
   return (
     <div className="fart-section">
-      {feedbackList?.map((record: feedbackResponse) => (
+      {feedbackList?.map((record: FeedbackResponse) => (
         <div key={record._id}>
           <h5>{record.name}</h5>
           <p>{record.feedback}</p>
